@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JukeboxModel1StoreContainer" CdmEntityContainer="JukeboxEntities3">
+    <EntitySetMapping Name="tblPlaylists">
+      <EntityTypeMapping TypeName="JukeboxModel1.tblPlaylist">
+        <MappingFragment StoreEntitySet="tblPlaylist">
+          <ScalarProperty Name="PlaylistID" ColumnName="PlaylistID" />
+          <ScalarProperty Name="SongTitle" ColumnName="SongTitle" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

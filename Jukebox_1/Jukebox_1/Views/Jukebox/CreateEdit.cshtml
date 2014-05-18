@@ -1,0 +1,57 @@
+﻿@model Jukebox_1.Models.tblPlaylist
+@{
+    ViewBag.Title = "Jukebox Page";
+
+    // set default intializer
+    bool newSong = false;
+    
+    // it'll be zero if it hasn't been used before
+    if(Model.PlaylistID != null && Model.PlaylistID == 0)
+    {
+        newSong = true;
+    }
+}
+
+<h2>Jukebox Page</h2>
+
+<!--inline if statement, if newsong = true, then use string createsave, else use string edit save-->
+<!-- prototype shoud look like: http://msdn.microsoft.com/en-us/library/system.web.mvc.html.formextensions.beginform(v=vs.118).aspx -->
+@using (Html.BeginForm(((newSong == true) ? "CreateSave" : "EditSave"), "Jukebox", FormMethod.Post))
+{
+    //hidden item, need to have in it so the data stays with the model object. if you take it out, it'll reinitialize
+    // all of the other data will be "stored" in the form items. goofy.
+    @Html.HiddenFor(model => model.PlaylistID)
+    
+    <div>
+        <span class="editor-label">
+            @Html.LabelFor(model => model.SongTitle)
+        </span>
+        <span class="editor-field">
+            @Html.EditorFor(model => model.SongTitle)
+            @Html.ValidationMessageFor(model => model.SongTitle)
+        </span>
+    </div>
+    
+    <div>
+        <span class="editor-label">
+            @Html.LabelFor(model => model.Score)
+        </span>
+        <span class="editor-field">
+            @Html.EditorFor(model => model.Score)
+            @Html.ValidationMessageFor(model => model.Score)
+        </span>
+    </div>
+    
+    <div>
+        <span class="editor-label">
+            @Html.LabelFor(model => model.Path)
+        </span>
+        <span class="editor-field">
+            @Html.EditorFor(model => model.Path)
+            @Html.ValidationMessageFor(model => model.Path)
+        </span>
+    </div>
+    
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Back to List", "Index")
+}

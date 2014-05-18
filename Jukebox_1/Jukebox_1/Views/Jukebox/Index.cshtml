@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Jukebox_1.Models.tblPlaylist>
+@{
+    ViewBag.Title = "Jukebox Page";
+}
+@Html.ActionLink("Create New Entry", "New");
+<h3>Jukebox Page</h3>
+
+<table>
+    <tr>
+        <th><!--blank ID header--></th>
+        <th><!--blank ID header--></th>
+        <th><!--blank ID header--></th>
+        <th>
+            @Html.DisplayNameFor(model=> model.SongTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Score)  
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Path)
+        </th>
+        <th><!--blank edit header--></th>
+    </tr>
+    
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("Up", new { id = item.PlaylistID })">
+                    <img src= "/Images/up.png" height="12" width="12"/>
+                </a>
+            </td>
+            <td>
+                <a href="@Url.Action("Down", new { id = item.PlaylistID })">
+                    <img src="/Images/down.png" height="12" width="12" />
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlaylistID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SongTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Path)
+            </td>
+
+            <td>
+                <!-- Edit is the action that will go into the controller -->
+                @Html.ActionLink("Edit This Song", "Edit", new { id = item.PlaylistID })
+            </td>
+        </tr>
+    }
+
+</table>
